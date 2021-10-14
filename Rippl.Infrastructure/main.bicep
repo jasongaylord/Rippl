@@ -31,7 +31,7 @@ resource sqlDb 'Microsoft.DocumentDB/databaseAccounts/apis/databases@2016-03-31'
       id: databaseName
     }
     options: {
-      throughput: 400
+      throughput: '400'
     }
   }
 }
