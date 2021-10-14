@@ -2,7 +2,7 @@
 param appName string
 
 @description('Database name')
-param databaseName string = 'RipplDb'
+param databaseName string = '${appName}Db'
 
 @description('Location for the resources')
 param location string = resourceGroup().location
@@ -25,7 +25,7 @@ resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2021-03-15' = {
 }
 
 resource sqlDb 'Microsoft.DocumentDB/databaseAccounts/apis/databases@2016-03-31' = {
-  name: '${cosmosDbAccount.name}/${toLower(databaseName)}'
+  name: '${toLower(databaseName)}'
   properties: {
     resource: {
       id: toLower(databaseName)
