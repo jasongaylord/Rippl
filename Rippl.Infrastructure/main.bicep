@@ -28,7 +28,7 @@ resource sqlDb 'Microsoft.DocumentDB/databaseAccounts/apis/databases@2016-03-31'
   name: '${cosmosDbAccount.name}/${toLower(databaseName)}'
   properties: {
     resource: {
-      id: databaseName
+      id: toLower(databaseName)
     }
     options: {
       throughput: '400'
