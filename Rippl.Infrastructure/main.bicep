@@ -1,5 +1,5 @@
 @description('Application name')
-param appName string = 'Rippl'
+param appName string
 
 @description('Database name')
 param databaseName string = 'RipplDb'

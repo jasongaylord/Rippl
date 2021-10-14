@@ -1,0 +1,24 @@
+on: [push]
+name: Azure ARM
+jobs: 
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      # checkout
+      - uses: actions/checkout@main
+
+      # login
+      - uses: actions/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # deploy
+      - name: deploy
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+          resourceGroupName: ${{ secrets.AZURE_RESOURCEGROUP }}
+          template: ./Rippl.Infrastructure/main.bicep
+          parameters: appName=Rippl
+          failOnStdErr: false
