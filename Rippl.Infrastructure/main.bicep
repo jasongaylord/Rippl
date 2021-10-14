@@ -24,14 +24,14 @@ resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2021-03-15' = {
   }
 }
 
-resource sqlDb 'Microsoft.DocumentDB/databaseAccounts/apis/databases@2016-03-31' = {
-  name: databaseName
-  properties: {
-    resource: {
-      id: databaseName
-    }
-    options: {
-      throughput: '400'
-    }
-  }
-}
+// resource sqlDb 'Microsoft.DocumentDB/databaseAccounts/apis/databases@2016-03-31' = {
+//   name: databaseName
+//   properties: {
+//     resource: {
+//       id: databaseName
+//     }
+//     options: {
+//       throughput: '400'
+//     }
+//   }
+// }
