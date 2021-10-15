@@ -1,8 +1,8 @@
 @description('Application name')
 param appName string
 
-//@description('Database name')
-//param databaseName string = toLower('${appName}Db')
+@description('Database name')
+param databaseName string = toLower('${appName}Db')
 
 @description('Location for the resources')
 param location string = resourceGroup().location
@@ -24,14 +24,14 @@ resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2021-03-15' = {
   }
 }
 
-// resource sqlDb 'Microsoft.DocumentDB/databaseAccounts/apis/databases@2016-03-31' = {
-//   name: databaseName
-//   properties: {
-//     resource: {
-//       id: databaseName
-//     }
-//     options: {
-//       throughput: '400'
-//     }
-//   }
-// }
+resource sqlDb 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2021-06-15' = {
+  name: '${cosmosDbAccount.name}/${databaseName}'
+  properties: {
+    resource: {
+      id: databaseName
+    }
+    options: {
+      throughput: 400
+    }
+  }
+}
