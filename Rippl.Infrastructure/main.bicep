@@ -1,8 +1,8 @@
 @description('Application name')
 param appName string
 
-@description('Database name')
-param databaseName string = toLower('${appName}Db')
+//@description('Database name')
+//param databaseName string = toLower('${appName}Db')
 
 @description('Location for the resources')
 param location string = resourceGroup().location
