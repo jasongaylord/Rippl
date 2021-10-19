@@ -39,7 +39,7 @@ resource cosmosDbAccount_00000000_0000_0000_0000_000000000001 'Microsoft.Documen
   name: '00000000_0000_0000_0000_000000000001'
   properties: {
     roleName: 'Cosmos DB Built-in Data Reader'
-    type: 0
+    type: 'BuiltInRole'
     assignableScopes: [
       cosmosDbAccount.id
     ]
@@ -62,7 +62,7 @@ resource cosmosDbAccount_00000000_0000_0000_0000_000000000002 'Microsoft.Documen
   name: '00000000_0000_0000_0000_000000000002'
   properties: {
     roleName: 'Cosmos DB Built-in Data Contributor'
-    type: 0
+    type: 'BuiltInRole'
     assignableScopes: [
       cosmosDbAccount.id
     ]
