@@ -78,3 +78,57 @@ resource cosmosDbAccount_00000000_0000_0000_0000_000000000002 'Microsoft.Documen
     ]
   }
 }
+
+resource cosmosDbAccount_Container 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2021-06-15' = {
+  parent: cosmosDbAccount_sqlDb
+  name: 'Contacts'
+  properties: {
+    resource: {
+      id: 'Contacts'
+      indexingPolicy: {
+        indexingMode: 'consistent'
+        automatic: true
+        includedPaths: [
+          {
+            path: '/*'
+          }
+        ]
+        excludedPaths: [
+          {
+            path: '/"_etag"/?'
+          }
+        ]
+      }
+      partitionKey: {
+        paths: [
+          '/partitionKey'
+        ]
+        kind: 'Hash'
+      }
+      uniqueKeyPolicy: {
+        uniqueKeys: []
+      }
+      conflictResolutionPolicy: {
+        mode: 'LastWriterWins'
+        conflictResolutionPath: '/_ts'
+      }
+    }
+  }
+  dependsOn: [
+    cosmosDbAccount_sqlDb
+  ]
+}
+
+resource cosmosDbAccount_Container_default 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/throughputSettings@2021-06-15' = {
+  parent: cosmosDbAccount_Container
+  name: 'default'
+  properties: {
+    resource: {
+      throughput: 400
+    }
+  }
+  dependsOn: [
+    cosmosDbAccount_Container
+    cosmosDbAccount_sqlDb
+  ]
+}
