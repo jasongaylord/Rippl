@@ -36,7 +36,7 @@ resource cosmosDbAccount_sqlDb 'Microsoft.DocumentDB/databaseAccounts/sqlDatabas
 
 resource cosmosDbAccount_00000000_0000_0000_0000_000000000001 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2021-06-15' = {
   parent: cosmosDbAccount
-  name: '00000000_0000_0000_0000_000000000001'
+  name: guid('00000000_0000_0000_0000_000000000001')
   properties: {
     roleName: 'Cosmos DB Built-in Data Reader'
     type: 'BuiltInRole'
@@ -59,7 +59,7 @@ resource cosmosDbAccount_00000000_0000_0000_0000_000000000001 'Microsoft.Documen
 
 resource cosmosDbAccount_00000000_0000_0000_0000_000000000002 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2021-06-15' = {
   parent: cosmosDbAccount
-  name: '00000000_0000_0000_0000_000000000002'
+  name: guid('00000000_0000_0000_0000_000000000002')
   properties: {
     roleName: 'Cosmos DB Built-in Data Contributor'
     type: 'BuiltInRole'
